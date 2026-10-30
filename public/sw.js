@@ -1,5 +1,12 @@
-const CACHE_VERSION = 'fitness-app-v1';
-const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icon.png', '/icon-maskable.png'];
+const BASE_PATH = '/fitness-app';
+const CACHE_VERSION = 'fitness-app-v2';
+const APP_SHELL = [
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/manifest.webmanifest`,
+  `${BASE_PATH}/icon.png`,
+  `${BASE_PATH}/icon-maskable.png`,
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_VERSION).then((cache) => cache.addAll(APP_SHELL)));
@@ -27,10 +34,10 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then((response) => {
           const copy = response.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put('/index.html', copy));
+          caches.open(CACHE_VERSION).then((cache) => cache.put(`${BASE_PATH}/index.html`, copy));
           return response;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.match(`${BASE_PATH}/index.html`))
     );
     return;
   }

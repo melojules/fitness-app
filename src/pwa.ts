@@ -1,5 +1,7 @@
 import { Platform } from 'react-native';
 
+const BASE_PATH = '/fitness-app';
+
 function ensureHeadLink(rel: string, href: string) {
   if (document.querySelector(`link[rel="${rel}"]`)) return;
   const link = document.createElement('link');
@@ -22,8 +24,8 @@ export function registerPwa() {
   if (Platform.OS !== 'web' || typeof document === 'undefined') return;
 
   document.title = 'Fitness App';
-  ensureHeadLink('manifest', '/manifest.webmanifest');
-  ensureHeadLink('apple-touch-icon', '/icon.png');
+  ensureHeadLink('manifest', `${BASE_PATH}/manifest.webmanifest`);
+  ensureHeadLink('apple-touch-icon', `${BASE_PATH}/icon.png`);
   ensureMeta('theme-color', '#0B0B0D');
   ensureMeta('apple-mobile-web-app-capable', 'yes');
   ensureMeta('apple-mobile-web-app-status-bar-style', 'black-translucent');
@@ -31,7 +33,7 @@ export function registerPwa() {
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
+      navigator.serviceWorker.register(`${BASE_PATH}/sw.js`, { scope: `${BASE_PATH}/` }).catch(() => {
         // The app remains usable online if service-worker registration is unavailable.
       });
     });

@@ -2,21 +2,21 @@
   "name": "Fitness App",
   "short_name": "Fitness",
   "description": "Offline workout, progress, and nutrition tracking on your device.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/fitness-app/",
+  "scope": "/fitness-app/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0B0B0D",
   "theme_color": "#0B0B0D",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "/fitness-app/icon.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-maskable.png",
+      "src": "/fitness-app/icon-maskable.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "maskable"
